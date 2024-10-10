@@ -1,8 +1,25 @@
 //*DarkMode feature
-document.querySelector("label").addEventListener("click", function () {
-  document.querySelector("body").classList.toggle("DarkMode");
+window.addEventListener("load", function () {
+  const savedTheme = localStorage.getItem("Theme");
+
+  // If a theme is saved, apply it to the body
+  if (savedTheme === "DarkMode") {
+    document.querySelector("body").classList.add("DarkMode");
+  }
 });
 
+// Add event listener for the theme toggle
+document.querySelector("label").addEventListener("click", function () {
+  // Toggle the DarkMode class on the body
+  document.querySelector("body").classList.toggle("DarkMode");
+
+  // Check if DarkMode is applied, and save the appropriate theme in localStorage
+  if (document.querySelector("body").classList.contains("DarkMode")) {
+    localStorage.setItem("Theme", "DarkMode");
+  } else {
+    localStorage.setItem("Theme", "light");
+  }
+});
 //*Advanced DOM manipulation with JS.
 
 let drumNumber = document.querySelectorAll(".drum").length; //? Gets the length of btn numbers
